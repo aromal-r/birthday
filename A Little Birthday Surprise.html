@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!-- saved from url=(0079)file:///C:/Users/aroma/Documents/Codex/2026-09-27/h/outputs/happy-birthday.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100b23">
+  <title>A Little Birthday Surprise</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+    :root { color-scheme: dark; --pink:#ff8eb5; --cream:#fff5ee; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; min-height:100svh; overflow:hidden; color:var(--cream); font-family:'DM Sans',sans-serif; background:radial-gradient(ellipse at 50% 105%,#66305c 0%,#28183d 45%,#100b23 82%); }
+    .sky { position:fixed; inset:0; pointer-events:none; overflow:hidden; }
+    .sky:before,.sky:after { content:""; position:absolute; inset:-20%; background-image:radial-gradient(1px 1px at 12% 20%,#fff 98%,transparent),radial-gradient(2px 2px at 79% 14%,#ffd9ec 98%,transparent),radial-gradient(1px 1px at 63% 48%,#fff 98%,transparent),radial-gradient(1px 1px at 32% 71%,#fff 98%,transparent),radial-gradient(2px 2px at 88% 76%,#ffd9ec 98%,transparent),radial-gradient(1px 1px at 48% 28%,#fff 98%,transparent); background-size:390px 320px; opacity:.55; animation:drift 18s linear infinite; }
+    .sky:after { background-position:130px 100px; opacity:.3; animation-duration:28s; }
+    @keyframes drift { to { transform:translateY(-24px); } }
+    .glow { position:absolute; width:360px;height:360px;border-radius:50%;filter:blur(90px);opacity:.18;background:#fa66a2; }
+    .glow.one { top:-190px;left:-110px; }.glow.two { right:-180px;bottom:-180px;background:#a36cff; }
+    .firework { position:absolute; width:5px;height:5px;border-radius:50%; background:#ffe8bd; box-shadow:0 0 5px 2px #fff2ca,0 0 24px 8px #ff8eb5; animation:burst 3.4s ease-out infinite; }
+    .firework:before,.firework:after { content:"";position:absolute;inset:-32px;border-radius:50%;border:1px solid transparent;border-top-color:#ffb6cf;border-right-color:#ffdba4;animation:spin 3.4s ease-out infinite; }
+    .firework:after { inset:-51px;border-color:transparent #d9b8ff #ffdba4 transparent;animation-delay:.12s; }
+    .f1 { left:17%;top:28%;animation-delay:.2s }.f2 { left:82%;top:22%;transform:scale(.7);animation-delay:1.5s }.f3 { left:74%;top:69%;transform:scale(.55);animation-delay:2.2s }
+    @keyframes burst { 0%,100% { opacity:0;transform:scale(.25) } 12%,65% { opacity:.9;transform:scale(1) } }
+    @keyframes spin { from { transform:rotate(0) scale(.4);opacity:0 } 18% { opacity:.7 } to { transform:rotate(145deg) scale(1.35);opacity:0 } }
+    main { position:relative;z-index:1;min-height:100vh;min-height:100svh;display:grid;place-items:center;padding:24px; }
+    .card { width:min(100%,590px);text-align:center;padding:clamp(34px,7vw,64px) clamp(22px,7vw,58px);border:1px solid rgba(255,255,255,.17);border-radius:30px;background:linear-gradient(145deg,rgba(255,255,255,.11),rgba(255,255,255,.035));box-shadow:0 24px 90px rgba(5,2,20,.42),inset 0 1px 0 rgba(255,255,255,.13);backdrop-filter:blur(16px);animation:appear .8s cubic-bezier(.2,.8,.2,1) both; }
+    @keyframes appear { from { opacity:0;transform:translateY(14px) scale(.98) } to { opacity:1;transform:none } }
+    .eyebrow { color:#ffc4d7;text-transform:uppercase;letter-spacing:.23em;font-size:.7rem;font-weight:700; }
+    .heart { color:#ff91b8;font-size:2.2rem;margin:15px 0 9px;display:inline-block;filter:drop-shadow(0 0 15px #ff74ad);animation:heartbeat 1.5s ease-in-out infinite; }
+    @keyframes heartbeat { 50% { transform:scale(1.14) } }
+    h1,h2 { font-family:'Playfair Display',Georgia,serif;letter-spacing:-.035em;margin:0; }
+    h1 { font-size:clamp(3rem,10vw,5.2rem);line-height:1.04;background:linear-gradient(110deg,#fff5ec,#ffc0d7 55%,#ffdfad);-webkit-background-clip:text;background-clip:text;color:transparent; }
+    h2 { font-size:clamp(2.5rem,8vw,4.2rem);line-height:1.08; }
+    p { color:rgba(255,245,238,.76);line-height:1.75;font-size:1rem;margin:20px auto 30px;max-width:390px; }
+    .button { border:0;border-radius:999px;padding:14px 28px;color:#35172e;background:linear-gradient(100deg,#ffc2d8,#ffe0ad);font:700 .95rem 'DM Sans',sans-serif;cursor:pointer;box-shadow:0 9px 30px rgba(255,142,181,.2);transition:transform .2s,box-shadow .2s; }
+    .button:hover { transform:translateY(-2px);box-shadow:0 13px 34px rgba(255,142,181,.34); }.button:focus-visible { outline:3px solid white;outline-offset:4px; }
+    .choices { display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:28px; }
+    .choice { min-width:118px; }.choice.no { color:var(--cream);background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.23);box-shadow:none; }
+    .response { min-height:1.5em;margin:22px 0 0;color:#ffd1df;font-weight:600; }
+    .screen[hidden] { display:none; }
+    .footer { position:fixed;bottom:16px;left:0;right:0;text-align:center;color:rgba(255,255,255,.38);font-size:.72rem;letter-spacing:.06em; }
+    @media (prefers-reduced-motion:reduce) { *,*:before,*:after { animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important; } }
+  </style>
+</head>
+<body>
+  <div class="sky" aria-hidden="true"><i class="glow one"></i><i class="glow two"></i><i class="firework f1"></i><i class="firework f2"></i><i class="firework f3"></i></div>
+  <main>
+    <section class="card screen" id="welcome" aria-labelledby="welcome-title">
+      <div class="eyebrow">A little birthday magic</div>
+      <div class="heart" aria-hidden="true">♥</div>
+      <h1 id="welcome-title">Happy<br>Birthday!</h1>
+      <p>Tonight, the stars are celebrating you. Here’s a little love, just for you.</p>
+      <button class="button" id="next">Next <span aria-hidden="true">→</span></button>
+    </section>
+    <section class="card screen" id="question" aria-labelledby="question-title" hidden="">
+      <div class="eyebrow">One little question</div>
+      <div class="heart" aria-hidden="true">♥</div>
+      <h2 id="question-title">I love you</h2>
+      <p>So tell me… do you love me?</p>
+      <div class="choices">
+        <button class="button choice" data-answer="Yes">Yes 💖</button>
+        <button class="button choice no" data-answer="No">No 🙈</button>
+      </div>
+      <p class="response" id="response" aria-live="polite"></p>
+    </section>
+  </main>
+  <div class="footer">MADE WITH LOVE ✦</div>
+  <script>
+    const welcome = document.getElementById('welcome');
+    const question = document.getElementById('question');
+    document.getElementById('next').addEventListener('click', () => {
+      welcome.hidden = true;
+      question.hidden = false;
+      document.getElementById('question-title').focus({ preventScroll: true });
+    });
+    document.querySelectorAll('[data-answer]').forEach(button => {
+      button.addEventListener('click', () => {
+        const answer = button.dataset.answer;
+        document.getElementById('response').textContent = answer === 'Yes'
+          ? 'You said yes! You just made my day 💕'
+          : 'You said no 🙈 I still love you!';
+        document.querySelectorAll('[data-answer]').forEach(choice => choice.setAttribute('aria-pressed', String(choice === button)));
+      });
+    });
+  </script>
+
+
+</body></html>
